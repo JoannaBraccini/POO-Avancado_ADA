@@ -1,9 +1,9 @@
 package contratos;
 
-public interface IContrato {
-    void assinar();
-    void cancelar();
-}
+//public interface IContrato {
+//    void assinar();
+//    void cancelar();
+//}
 
 /*
 Fazer uma interface nesse caso não faz sentido,

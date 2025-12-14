@@ -2,6 +2,7 @@ package com.ada;
 
 import contratos.ContratoAluguel;
 import contratos.ContratoSeguro;
+import contratos.NotificadorContratos;
 import pedidos.ItemPedido;
 import pedidos.Pedido;
 import pedidos.PedidoEspecial;
@@ -26,6 +27,10 @@ public class Main {
         System.out.println("Contrato de aluguel nº: " + contratoAluguel2.getNumeroContrato());
         contratoAluguel2.cancelar();
         System.out.println("Contrato de aluguel nº: " + contratoAluguel2.getNumeroContrato());
+
+        NotificadorContratos notificadorContratos = new NotificadorContratos();
+        notificadorContratos.envioEmailConfirmacao(contratoAluguel);
+        notificadorContratos.envioEmailCancelamento(contratoAluguel2);
 
         System.out.println();
         System.out.println("==== Pedidos ====");
