@@ -1,4 +1,4 @@
-package contratos;
+//package modelos.contratos.interfaces;
 
 //public interface IContrato {
 //    void assinar();

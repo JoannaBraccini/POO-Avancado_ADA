@@ -1,96 +1,93 @@
-# 🎓 POO-Avançado
+# 🎓 POO Avançado
 
-> Projeto Java de exemplo focado em **Programação Orientada a Objetos Avançada** com aplicação prática dos princípios SOLID.
+> Aprendendo POO de verdade aplicando os princípios SOLID! 💜
 
----
+[![Java](https://img.shields.io/badge/Java-21-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+[![Maven](https://img.shields.io/badge/Maven-3.x-C71A36?style=flat-square&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-## 📋 Sobre o Projeto
-
-Projeto Java (Maven) desenvolvido como atividade educacional do programa **[Elas+ Tech da Ada](https://ada.tech/)** 💜 — **artifactId**: `POO-Avancado`.
-
-O **Elas+ Tech** é um programa de formação tecnológica voltado para mulheres, promovendo diversidade e inclusão na área de tecnologia.
-
-Contém exemplos práticos de:
-- 📜 **Contratos** (aluguel e seguro)
-- 🛒 **Pedidos** (normais e especiais)
-- 🎯 Aplicação dos princípios **SOLID**
-
-**Classe principal**: `com.ada.Main`
+Projeto desenvolvido no programa **[Elas+ Tech da Ada](https://ada.tech/)** 🚀
 
 ---
 
-## 🏗️ Estrutura do Projeto
+## 💡 Sobre
 
-```
-POO-Avancado/
-│
-├── pom.xml                          # Configuração Maven
-├── README.md                        # Este arquivo
-├── LICENSE                          # Licença MIT
-│
-└── src/
-    ├── main/
-    │   ├── java/
-    │   │   ├── com/ada/
-    │   │   │   └── Main.java       # 🚀 Classe principal
-    │   │   ├── contratos/          # 📜 Pacote de contratos
-    │   │   │   ├── IContrato.java
-    │   │   │   ├── Contrato.java
-    │   │   │   ├── ContratoAluguel.java
-    │   │   │   ├── ContratoSeguro.java
-    │   │   │   └── NotificadorContratos.java
-    │   │   └── pedidos/            # 🛒 Pacote de pedidos
-    │   │       ├── ItemPedido.java
-    │   │       ├── Pedido.java
-    │   │       └── PedidoEspecial.java
-    │   └── resources/
-    │
-    └── test/
-        └── java/                    # 🧪 Testes (a implementar)
-```
+Um projeto prático de Java que demonstra os **5 princípios SOLID** através de um sistema real com:
+
+- 📜 Contratos (aluguel, seguro, fornecedor, trabalho)
+- 💳 Pagamentos (boleto e cartão)
+- 👥 Gerenciamento de pessoas
+- 🛒 Sistema de pedidos
+- 📧 Notificações
 
 ---
 
 ## 🎯 Princípios SOLID
 
-Este projeto demonstra a aplicação prática dos **5 princípios SOLID** de design orientado a objetos:
+**SOLID** é um acrônimo para 5 princípios que tornam o código mais limpo, flexível e fácil de manter.
 
-### 🔹 **S** - Single Responsibility Principle (Princípio da Responsabilidade Única)
-> *"Uma classe deve ter um, e somente um, motivo para mudar."*
+---
 
-Cada classe tem uma responsabilidade bem definida:
-- `ContratoAluguel` → gerencia apenas contratos de aluguel
-- `ContratoSeguro` → gerencia apenas contratos de seguro
-- `NotificadorContratos` → **responsável exclusivamente por notificações** (separado da lógica de negócio dos contratos)
-- `ItemPedido` → representa um item individual
-- `Pedido` → gerencia a coleção de itens
+### 🔹 S - Single Responsibility (Responsabilidade Única)
 
-**Exemplo prático**: A classe `NotificadorContratos` foi criada separadamente para gerenciar o envio de e-mails. Isso significa que:
-- Se a lógica de negócio dos contratos mudar, `NotificadorContratos` não precisa mudar
-- Se a forma de enviar notificações mudar (ex: adicionar SMS), apenas `NotificadorContratos` é modificado
-- As classes de contrato não precisam "saber" como enviar e-mails
+> Uma classe, uma responsabilidade!
 
-### 🔹 **O** - Open/Closed Principle (Princípio Aberto/Fechado)
-> *"Entidades de software devem estar abertas para extensão, mas fechadas para modificação."*
+**No projeto:** 
+- `ContratoAluguel` cuida só de contratos de aluguel
+- `NotificadorContratos` cuida só de enviar notificações
+- Se algo mudar nas notificações, só mexo no `NotificadorContratos`! ✨
 
-As classes são extensíveis sem modificar o código existente:
-- `PedidoEspecial` **estende** `Pedido` adicionando funcionalidade de desconto
-- Novos tipos de contratos podem ser criados estendendo `Contrato`
+---
 
-### 🔹 **L** - Liskov Substitution Principle (Princípio da Substituição de Liskov)
-> *"Objetos de uma superclasse devem poder ser substituídos por objetos de suas subclasses sem quebrar a aplicação."*
+### 🔹 O - Open/Closed (Aberto/Fechado)
 
-Você pode usar `PedidoEspecial` em qualquer lugar que espere um `Pedido`, pois mantém o contrato da classe base.
+> Aberto para extensão, fechado para modificação.
 
-### 🔹 **I** - Interface Segregation Principle (Princípio da Segregação de Interface)
-> *"Clientes não devem ser forçados a depender de interfaces que não utilizam."*
+**No projeto:**
+- `PedidoEspecial` **estende** `Pedido` e adiciona desconto
+- Não preciso mexer no código original pra adicionar features! 🚀
 
-A interface `IContrato` define apenas os métodos essenciais que todo contrato deve implementar, sem forçar implementações desnecessárias.
+---
 
-### 🔹 **D** - Dependency Inversion Principle (Princípio da Inversão de Dependência)
-> *"Dependa de abstrações, não de implementações concretas."*
+### 🔹 L - Liskov Substitution (Substituição de Liskov)
 
-O código trabalha com interfaces (`IContrato`) ao invés de classes concretas, permitindo flexibilidade e testabilidade.
+> Se funciona com a classe pai, tem que funcionar com a filha.
+
+**No projeto:**
+- Posso usar `ContratoAluguel` em qualquer lugar que aceite `Contrato`
+- Tudo continua funcionando perfeitamente! 👌
+
+---
+
+### 🔹 I - Interface Segregation (Segregação de Interface)
+
+> Interfaces pequenas e específicas > uma interface gigante.
+
+**No projeto:**
+- `IContrato` define só o essencial
+- Ninguém é forçado a implementar métodos desnecessários! 🎯
+
+---
+
+### 🔹 D - Dependency Inversion (Inversão de Dependência)
+
+> Dependa de abstrações, não de implementações.
+
+**No projeto:**
+- Trabalho com `IContrato`, não com `ContratoAluguel` específico
+- Posso trocar implementações fácil! 🔄
+
+---
+
+### 📊 Resumão
+
+| Princípio | O que é? | Benefício |
+|-----------|----------|-----------|
+| **S** | Uma responsabilidade por classe | 🎯 Fácil de manter |
+| **O** | Estende sem modificar | 🔒 Código estável |
+| **L** | Subclasses substituem superclasses | 🔄 Polimorfismo seguro |
+| **I** | Interfaces enxutas | 📦 Menos dependências |
+| **D** | Abstrações > implementações | 🔌 Código flexível |
 
 ---
 
@@ -101,76 +98,31 @@ O código trabalha com interfaces (`IContrato`) ao invés de classes concretas, 
 
 ---
 
-## 🚀 Como Usar
-
-### 📦 Compilar o Projeto
+## 🚀 Como Rodar
 
 ```bash
-# Compilar com testes
-mvn package
+# Compilar
+mvn clean package
 
-# Compilar sem executar testes (mais rápido)
-mvn -DskipTests package
-```
-
-### ▶️ Executar o Programa
-
-```bash
-# Opção 1: Executar a partir das classes compiladas
+# Rodar
 java -cp target/classes com.ada.Main
-
-# Opção 2: Executar a partir do JAR gerado
-java -cp target/POO-Avancado-1.0-SNAPSHOT.jar com.ada.Main
-
-# Opção 3: Usando o plugin Maven exec (após configurar no pom.xml)
-mvn exec:java -Dexec.mainClass="com.ada.Main"
 ```
 
-
-### 🧹 Limpar Build
-
-```bash
-mvn clean
-```
-
----
-
-## 📝 Convenções do Projeto
-
-- 📂 Código fonte em `src/main/java`
-- 📦 Pacotes seguem o padrão `com.ada.*`
-- ☕ Java 21 (source/target definidos no `pom.xml`)
-- 🚫 **NUNCA** commitar a pasta `target/` (está no `.gitignore`)
-- ✅ Sempre validar a compilação antes de commits importantes
+Pronto! 🎉
 
 ---
 
 ## 📄 Licença
 
-Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+MIT License - fique à vontade para usar e aprender! 💙
 
 ---
 
-## 📚 Recursos Adicionais
+## 👩‍💻 Sobre
 
-- 📖 [Princípios SOLID - Artigo](https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)
-- 🎓 [Clean Code - Robert C. Martin](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
-- ☕ [Documentação Java 21](https://docs.oracle.com/en/java/javase/21/)
-- 📦 [Maven Getting Started](https://maven.apache.org/guides/getting-started/)
+Feito com ☕ e 💜 no programa **Elas+ Tech da Ada**
 
----
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Joanna_Braccini-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joannabraccini/)
 
-## 👩‍💻 Autora
-
-<div align="center">
-
-**Desenvolvido com ❤️ para aprendizado de POO Avançada**
-
-Projeto parte do programa **Elas+ Tech da Ada** 💜
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Joanna-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joannabraccini/)
-
-⭐ Se este projeto foi útil, considere dar uma estrela!
-
-</div>
+⭐ Curtiu? Dá uma estrela aí!
 

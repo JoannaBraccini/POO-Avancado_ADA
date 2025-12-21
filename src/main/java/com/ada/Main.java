@@ -1,17 +1,17 @@
 package com.ada;
 
-import contratos.ContratoAluguel;
-import contratos.ContratoSeguro;
-import contratos.NotificadorContratos;
-import pedidos.ItemPedido;
-import pedidos.Pedido;
-import pedidos.PedidoEspecial;
+import enums.Acao;
+import modelos.contratos.Contrato;
+import modelos.contratos.ContratoSeguro;
+import modelos.pagamentos.PagamentoBoleto;
+import modelos.pagamentos.PagamentoCartao;
+import modelos.pessoas.Pessoa;
+import services.PagamentoService;
 
 import java.util.List;
 
 public class Main {
-
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         System.out.println("==== Contratos ====");
 
         ContratoAluguel contratoAluguel = new ContratoAluguel();
@@ -62,5 +62,47 @@ public class Main {
         System.out.println("Itens do pedido especial: " + pedidoEspecial.getItensPedidoList().getFirst().getNomeItem());
         System.out.println("Valor do pedido especial: " + pedidoEspecial.getItensPedidoList().getFirst().getValorItem());
 
+    }*/ //Main testes de pedidos
+
+    public static void main(String[] args) {
+        gerenciaContratos();
+        System.out.println("-=".repeat(30));
+        gerenciaPessoas();
+        System.out.println("-=".repeat(30));
+        gerenciaPagamentos();
+    }
+
+    public static void gerenciaPagamentos() {
+        System.out.println("Serviço de Pagamento!");
+
+        PagamentoBoleto pagamentoBoleto = new PagamentoBoleto();
+        PagamentoCartao pagamentoCartao = new PagamentoCartao(6);
+
+        PagamentoService pagamentoService = new PagamentoService();
+        pagamentoService.processarPagamento(pagamentoBoleto);
+        pagamentoService.processarPagamento(pagamentoCartao);
+    }
+
+    public static void gerenciaPessoas() {
+        System.out.println("Serviço de pessoas!");
+        Pessoa pessoa = new Pessoa("Joanna", "123.456.789-00");
+        System.out.println(pessoa);
+    }
+
+    public static void gerenciaContratos() {
+        System.out.println("Gerenciamento de contratos!");
+        gerenciaAcaoContratos();
+    }
+
+    private static void gerenciaAcaoContratos() {
+        System.out.println("Serviço de Ação de Contratos!");
+
+        ContratoSeguro contratoSeguro = new ContratoSeguro(1500, List.of("Joanna, José"));
+
+        executarAcaoContrato(contratoSeguro, Acao.ACT);
+    }
+
+    private static void executarAcaoContrato(Contrato contrato, Acao acaoContrato) {
+        contrato.executarAcao(acaoContrato);
     }
 }
