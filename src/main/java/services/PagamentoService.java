@@ -1,6 +1,6 @@
 package services;
 
-import modelos.pagamentos.Pagamento;
+import modelos.pagamentos.interfaces.Pagamento;
 
 public class PagamentoService {
 

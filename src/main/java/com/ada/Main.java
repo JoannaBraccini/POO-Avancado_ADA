@@ -7,7 +7,6 @@ import modelos.contratos.ContratoTrabalho;
 import modelos.pagamentos.PagamentoBoleto;
 import modelos.pagamentos.PagamentoCartao;
 import modelos.pessoas.Pessoa;
-import services.PagamentoService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -69,23 +68,37 @@ public class Main {
     public static void main(String[] args) {
         gerenciaContratos();
         System.out.println("-=".repeat(30));
-        gerenciaPessoas();
-        System.out.println("-=".repeat(30));
-        gerenciaPagamentos();
-        System.out.println("-=".repeat(30));
         gerenciaRescisaoContrato();
+        System.out.println("-=".repeat(30));
+        gerenciaPessoas();
+//        System.out.println("-=".repeat(30));
+//        gerenciaPagamentos();
+        System.out.println("-=".repeat(30));
+        gerenciaPagamentosParcelados();
     }
 
-    public static void gerenciaPagamentos() {
-        System.out.println("Serviço de Pagamento!");
+    private static void gerenciaPagamentosParcelados() {
+        System.out.println("Serviço de Pagamentos Parcelados!");
 
         PagamentoBoleto pagamentoBoleto = new PagamentoBoleto();
-        PagamentoCartao pagamentoCartao = new PagamentoCartao(6);
+        PagamentoCartao pagamentoCartao = new PagamentoCartao();
 
-        PagamentoService pagamentoService = new PagamentoService();
-        pagamentoService.processarPagamento(pagamentoBoleto);
-        pagamentoService.processarPagamento(pagamentoCartao);
+        pagamentoBoleto.processarPagamento();
+        pagamentoCartao.parcelarPagamento(10);
+
+        pagamentoCartao.processarPagamento();//sem parcelamento
     }
+
+//    public static void gerenciaPagamentos() {
+//        System.out.println("Serviço de Pagamento!");
+//
+//        PagamentoBoleto pagamentoBoleto = new PagamentoBoleto();
+//        PagamentoCartao pagamentoCartao = new PagamentoCartao(6);
+//
+//        PagamentoService pagamentoService = new PagamentoService();
+//        pagamentoService.processarPagamento(pagamentoBoleto);
+//        pagamentoService.processarPagamento(pagamentoCartao);
+//    }
 
     public static void gerenciaPessoas() {
         System.out.println("Serviço de pessoas!");

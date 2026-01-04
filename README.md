@@ -1,128 +1,97 @@
-# 🎓 POO Avançado
+# 💜 POO Avançado
 
-> Aprendendo POO de verdade aplicando os princípios SOLID! 💜
+### Aprenda SOLID na prática com Java!
 
 [![Java](https://img.shields.io/badge/Java-21-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Maven](https://img.shields.io/badge/Maven-3.x-C71A36?style=flat-square&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-Projeto desenvolvido no programa **[Elas+ Tech da Ada](https://ada.tech/)** 🚀
+> 🚀 Projeto desenvolvido no programa **[Elas+ Tech da Ada](https://ada.tech/)**
 
 ---
 
-## 💡 Sobre
+## 🌟 O que é isso?
 
-Um projeto prático de Java que demonstra os **5 princípios SOLID** através de um sistema real com:
+Este é um projeto de estudo que mostra como aplicar os **princípios SOLID** em um sistema Java real. Aqui você vai encontrar exemplos práticos de:
 
-- 📜 Contratos (aluguel, seguro, fornecedor, trabalho)
-- 💳 Pagamentos (boleto e cartão)
-- 👥 Gerenciamento de pessoas
-- 🛒 Sistema de pedidos
-- 📧 Notificações
-
----
-
-## 🎯 Princípios SOLID
-
-**SOLID** é um acrônimo para 5 princípios que tornam o código mais limpo, flexível e fácil de manter.
+✅ **Sistema de Contratos** - Gerenciamento de contratos com ações (aceitar, recusar, cancelar) e rescisão  
+✅ **Processamento de Pagamentos** - Pagamentos via boleto e cartão com parcelamento  
+✅ **Gestão de Pessoas** - Cadastro e gerenciamento de pessoas  
+✅ **Sistema de Pedidos** - Pedidos comuns e especiais com descontos  
+✅ **Enums** - Ações de contratos tipadas e seguras  
+✅ **Interfaces Segregadas** - `Pagamento` e `Parcelavel` separadas (Interface Segregation na prática!)
 
 ---
 
-### 🔹 S - Single Responsibility (Responsabilidade Única)
+## ✨ Destaques do Projeto
 
-> Uma classe, uma responsabilidade!
+### 🎬 Enums com Ações de Contratos
+Usa `enum Acao` para definir ações como **Aceitar**, **Recusar** e **Cancelar** contratos de forma tipada e segura.
 
-**No projeto:** 
-- `ContratoAluguel` cuida só de contratos de aluguel
-- `NotificadorContratos` cuida só de enviar notificações
-- Se algo mudar nas notificações, só mexo no `NotificadorContratos`! ✨
+### 💳 Interface Segregation na Prática
+Interfaces separadas: `Pagamento` (todos implementam) e `Parcelavel` (só quem precisa). Cartão de crédito implementa ambas, boleto só `Pagamento`.
 
----
+### 🔄 Polimorfismo e Abstração
+Classe abstrata `Contrato` com método `executarAcao(Acao)` que cada tipo de contrato implementa do seu jeito. `ContratoTrabalho` ainda tem seu método específico `rescindirPorJustaCausa()`.
 
-### 🔹 O - Open/Closed (Aberto/Fechado)
-
-> Aberto para extensão, fechado para modificação.
-
-**No projeto:**
-- `PedidoEspecial` **estende** `Pedido` e adiciona desconto
-- Não preciso mexer no código original pra adicionar features! 🚀
+### 📦 Lombok
+Usa Lombok para reduzir boilerplate com `@Getter`, `@Setter`, `@AllArgsConstructor`.
 
 ---
 
-### 🔹 L - Liskov Substitution (Substituição de Liskov)
+## 🎯 O que é SOLID?
 
-> Se funciona com a classe pai, tem que funcionar com a filha.
+**SOLID** são 5 princípios que deixam seu código mais limpo, organizado e fácil de manter. É tipo as regras de ouro da programação orientada a objetos!
 
-**No projeto:**
-- Posso usar `ContratoAluguel` em qualquer lugar que aceite `Contrato`
-- Tudo continua funcionando perfeitamente! 👌
+### 💡 Os 5 Princípios Explicados Simples
 
----
+#### **S** - Single Responsibility
+Cada classe faz uma coisa só. `ContratoAluguel` cuida de aluguéis, `NotificadorContratos` cuida de notificações. `PagamentoCartao` processa pagamentos, não gerencia contratos!
 
-### 🔹 I - Interface Segregation (Segregação de Interface)
+#### **O** - Open/Closed
+Pode estender, mas não modifica. Criou `PedidoEspecial`? Estende `Pedido` sem bagunçar o código original. Novo tipo de contrato? Herda de `Contrato` e pronto!
 
-> Interfaces pequenas e específicas > uma interface gigante.
+#### **L** - Liskov Substitution
+Se funciona com a classe pai, funciona com a filha. Use `ContratoTrabalho` onde aceita `Contrato` sem medo! Método `executarAcao()` funciona em qualquer contrato.
 
-**No projeto:**
-- `IContrato` define só o essencial
-- Ninguém é forçado a implementar métodos desnecessários! 🎯
+#### **I** - Interface Segregation
+Interfaces pequenas e focadas. `Pagamento` tem só `processarPagamento()`. `Parcelavel` tem só `parcelarPagamento()`. Boleto não parcela? Não precisa implementar `Parcelavel`!
 
----
-
-### 🔹 D - Dependency Inversion (Inversão de Dependência)
-
-> Dependa de abstrações, não de implementações.
-
-**No projeto:**
-- Trabalho com `IContrato`, não com `ContratoAluguel` específico
-- Posso trocar implementações fácil! 🔄
+#### **D** - Dependency Inversion
+Dependa de abstrações (interfaces), não de classes concretas. O código trabalha com `Pagamento`, não com `PagamentoCartao` específico. Flexível e desacoplado!
 
 ---
 
-### 📊 Resumão
+## 🚀 Como usar
 
-| Princípio | O que é? | Benefício |
-|-----------|----------|-----------|
-| **S** | Uma responsabilidade por classe | 🎯 Fácil de manter |
-| **O** | Estende sem modificar | 🔒 Código estável |
-| **L** | Subclasses substituem superclasses | 🔄 Polimorfismo seguro |
-| **I** | Interfaces enxutas | 📦 Menos dependências |
-| **D** | Abstrações > implementações | 🔌 Código flexível |
+**Você precisa de:**
+- Java 21+ instalado
+- Maven 3.x
 
----
-
-## ⚙️ Requisitos
-
-- ☕ **Java 21** (ou superior)
-- 📦 **Maven 3.x**
-
----
-
-## 🚀 Como Rodar
+**Rodar o projeto:**
 
 ```bash
-# Compilar
 mvn clean package
-
-# Rodar
 java -cp target/classes com.ada.Main
 ```
 
-Pronto! 🎉
+É isso! 🎉
 
 ---
 
 ## 📄 Licença
 
-MIT License - fique à vontade para usar e aprender! 💙
+MIT License - use, estude e aprenda à vontade! 💙
 
 ---
 
-## 👩‍💻 Sobre
+## 💜 Feito por
 
-Feito com ☕ e 💜 no programa **Elas+ Tech da Ada**
+**Joanna Braccini** no programa Elas+ Tech da Ada
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Joanna_Braccini-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joannabraccini/)
+[![LinkedIn](https://img.shields.io/badge/Conecte--se_comigo!-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joannabraccini/)
 
-⭐ Curtiu? Dá uma estrela aí!
+---
+
+⭐ Gostou? Deixa uma estrela! • 🐛 Achou um bug? Abre uma issue! • 💡 Tem sugestões? Fala comigo!
 
