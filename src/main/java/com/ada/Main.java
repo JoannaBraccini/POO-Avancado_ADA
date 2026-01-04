@@ -2,11 +2,16 @@ package com.ada;
 
 import enums.Acao;
 import modelos.contratos.Contrato;
+import modelos.contratos.ContratoAluguel;
 import modelos.contratos.ContratoSeguro;
 import modelos.contratos.ContratoTrabalho;
 import modelos.pagamentos.PagamentoBoleto;
 import modelos.pagamentos.PagamentoCartao;
 import modelos.pessoas.Pessoa;
+import repository.ContratoRepositoryArquivo;
+import repository.ContratoRepositoryBD;
+import repository.interfaces.ContratoRepository;
+import services.ContratoService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,6 +80,23 @@ public class Main {
 //        gerenciaPagamentos();
         System.out.println("-=".repeat(30));
         gerenciaPagamentosParcelados();
+        System.out.println("-=".repeat(30));
+        gerenciaSalvarContratos();
+    }
+
+    private static void gerenciaSalvarContratos() {
+        System.out.println("Serviço de Salvar Contratos!");
+
+        ContratoRepository contratoRepositoryArquivo = new ContratoRepositoryArquivo();
+        ContratoRepositoryBD contratoRepositoryBD = new ContratoRepositoryBD();
+        ContratoService contratoService = new ContratoService(contratoRepositoryArquivo);
+        ContratoService contratoServiceDB = new ContratoService(contratoRepositoryBD);
+
+        ContratoAluguel contratoAluguel = new ContratoAluguel("Rua das Frutas, 123", "Casa", Arrays.asList("Gabriel", "Joao"));
+        System.out.println(contratoAluguel);
+
+        contratoService.salvarContrato(contratoAluguel);
+        contratoServiceDB.salvarContrato(contratoAluguel);
     }
 
     private static void gerenciaPagamentosParcelados() {

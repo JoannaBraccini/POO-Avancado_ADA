@@ -5,7 +5,6 @@ import lombok.ToString;
 import modelos.pessoas.GerenciadorPessoas;
 
 import java.util.List;
-@ToString
 public class ContratoAluguel extends Contrato implements GerenciadorPessoas {
     private final String endereco;
     private final String tipoMoradia;
@@ -24,5 +23,15 @@ public class ContratoAluguel extends Contrato implements GerenciadorPessoas {
     @Override
     public void adicionarPessoas(String novaPessoa) {
         this.pessoasEnvolvidas.add(novaPessoa);
+    }
+
+    @Override
+    public String toString() {
+        return "ContratoAluguel{" +
+                "endereco='" + endereco + '\'' +
+                ", tipoMoradia='" + tipoMoradia + '\'' +
+                ", numeroContrato=" + numeroContrato +
+                ", pessoasEnvolvidas=" + pessoasEnvolvidas +
+                '}';
     }
 }

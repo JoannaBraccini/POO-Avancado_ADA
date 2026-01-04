@@ -16,6 +16,8 @@ Este é um projeto de estudo que mostra como aplicar os **princípios SOLID** em
 
 ✅ **Sistema de Contratos** - Gerenciamento de contratos com ações (aceitar, recusar, cancelar) e rescisão  
 ✅ **Processamento de Pagamentos** - Pagamentos via boleto e cartão com parcelamento  
+✅ **Persistência de Dados** - Padrão Repository com implementações para arquivo e banco de dados  
+✅ **Injeção de Dependência** - `ContratoService` recebe o repositório por construtor  
 ✅ **Gestão de Pessoas** - Cadastro e gerenciamento de pessoas  
 ✅ **Sistema de Pedidos** - Pedidos comuns e especiais com descontos  
 ✅ **Enums** - Ações de contratos tipadas e seguras  
@@ -36,6 +38,9 @@ Classe abstrata `Contrato` com método `executarAcao(Acao)` que cada tipo de con
 
 ### 📦 Lombok
 Usa Lombok para reduzir boilerplate com `@Getter`, `@Setter`, `@AllArgsConstructor`.
+
+### 💾 Padrão Repository + Dependency Inversion
+**Interface** `ContratoRepository` define o contrato. **Implementações** `ContratoRepositoryArquivo` e `ContratoRepositoryBD` salvam em arquivo ou banco de dados. `ContratoService` não sabe qual implementação está usando - ele só depende da abstração! Troca de arquivo pra BD? Só muda a injeção no construtor. SOLID no seu melhor! 🚀
 
 ---
 
@@ -58,7 +63,7 @@ Se funciona com a classe pai, funciona com a filha. Use `ContratoTrabalho` onde 
 Interfaces pequenas e focadas. `Pagamento` tem só `processarPagamento()`. `Parcelavel` tem só `parcelarPagamento()`. Boleto não parcela? Não precisa implementar `Parcelavel`!
 
 #### **D** - Dependency Inversion
-Dependa de abstrações (interfaces), não de classes concretas. O código trabalha com `Pagamento`, não com `PagamentoCartao` específico. Flexível e desacoplado!
+Dependa de abstrações (interfaces), não de classes concretas. `ContratoService` depende de `ContratoRepository` (interface), não de `ContratoRepositoryBD` ou `ContratoRepositoryArquivo`. Quer mudar de arquivo pra banco? Só muda a injeção! Código desacoplado e flexível!
 
 ---
 
