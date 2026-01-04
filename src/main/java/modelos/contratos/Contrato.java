@@ -2,6 +2,7 @@ package modelos.contratos;
 
 import enums.Acao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Contrato {
@@ -11,8 +12,8 @@ public abstract class Contrato {
 
     public Contrato(List<String> pessoasEnvolvidas) {
         this.numeroContrato = ++contadorContratos;
-        this.pessoasEnvolvidas = pessoasEnvolvidas;
+        this.pessoasEnvolvidas = new ArrayList<>(pessoasEnvolvidas);
     }
 
     public abstract void executarAcao(Acao acao);
-   }
+ }

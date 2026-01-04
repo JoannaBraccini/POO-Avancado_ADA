@@ -3,11 +3,13 @@ package com.ada;
 import enums.Acao;
 import modelos.contratos.Contrato;
 import modelos.contratos.ContratoSeguro;
+import modelos.contratos.ContratoTrabalho;
 import modelos.pagamentos.PagamentoBoleto;
 import modelos.pagamentos.PagamentoCartao;
 import modelos.pessoas.Pessoa;
 import services.PagamentoService;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -70,6 +72,8 @@ public class Main {
         gerenciaPessoas();
         System.out.println("-=".repeat(30));
         gerenciaPagamentos();
+        System.out.println("-=".repeat(30));
+        gerenciaRescisaoContrato();
     }
 
     public static void gerenciaPagamentos() {
@@ -105,4 +109,13 @@ public class Main {
     private static void executarAcaoContrato(Contrato contrato, Acao acaoContrato) {
         contrato.executarAcao(acaoContrato);
     }
+
+    private static void gerenciaRescisaoContrato() {
+        System.out.println("Serviço de Rescisão de Contratos!");
+
+        ContratoTrabalho contratoTrabalho = new ContratoTrabalho(Arrays.asList("Gabriel", "Daniel"));
+
+        contratoTrabalho.rescindirPorJustaCausa();
+    }
+
 }

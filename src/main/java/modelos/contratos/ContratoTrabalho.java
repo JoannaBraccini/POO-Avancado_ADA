@@ -15,4 +15,8 @@ public class ContratoTrabalho extends Contrato{
     public void executarAcao(Acao acao) {
         System.out.println("Ação " + acao.getValor() + " para o contrato de trabalho " + cargo + " executada. Interessados: " + pessoasEnvolvidas);
     }
+
+    public void rescindirPorJustaCausa() {
+        System.out.println("Contrato de trabalho rescindido por justa causa!");
+    }
 }
