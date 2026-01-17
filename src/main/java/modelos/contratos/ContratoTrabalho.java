@@ -19,4 +19,13 @@ public class ContratoTrabalho extends Contrato{
     public void rescindirPorJustaCausa() {
         System.out.println("Contrato de trabalho rescindido por justa causa!");
     }
+
+    @Override
+    public String toString() {
+        return "ContratoTrabalho{" +
+                "cargo='" + cargo + '\'' +
+                ", numeroContrato=" + numeroContrato +
+                ", pessoasEnvolvidas=" + pessoasEnvolvidas +
+                '}';
+    }
 }

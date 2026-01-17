@@ -3,7 +3,7 @@ package repository;
 import modelos.contratos.Contrato;
 import repository.interfaces.ContratoRepository;
 
-public class ContratoRepositoryBD implements ContratoRepository {
+public class ContratoRepositoryBanco implements ContratoRepository {
 
     @Override
     public void salvar(Contrato contrato) {
