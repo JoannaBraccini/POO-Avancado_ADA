@@ -1,5 +1,6 @@
 package services;
 
+import excecao.ContratoInvalidoException;
 import modelos.contratos.Contrato;
 import repository.interfaces.ContratoRepository;
 
@@ -12,6 +13,13 @@ public class ContratoService {
     }
 
     public void salvarContrato(Contrato contrato){
-        contratoRepository.salvar(contrato);
+        try {
+            if(contrato == null) {
+                throw new ContratoInvalidoException(contrato);
+            }
+            contratoRepository.salvar(contrato);
+        } catch (ContratoInvalidoException e){
+            System.out.println("Erro ao salvar contrato: " + e.getMessage());
+        }
     }
 }

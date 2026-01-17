@@ -93,10 +93,13 @@ public class Main {
         ContratoService contratoServiceDB = new ContratoService(contratoRepositoryBD);
 
         ContratoAluguel contratoAluguel = new ContratoAluguel("Rua das Frutas, 123", "Casa", Arrays.asList("Gabriel", "Joao"));
+        ContratoSeguro contratoSeguro = null;
         System.out.println(contratoAluguel);
 
         contratoService.salvarContrato(contratoAluguel);
         contratoServiceDB.salvarContrato(contratoAluguel);
+
+        contratoService.salvarContrato(contratoSeguro);
     }
 
     private static void gerenciaPagamentosParcelados() {

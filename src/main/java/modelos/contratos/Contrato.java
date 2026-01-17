@@ -1,10 +1,12 @@
 package modelos.contratos;
 
 import enums.Acao;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public abstract class Contrato {
     private static int contadorContratos = 0;
     protected Integer numeroContrato;
@@ -16,4 +18,4 @@ public abstract class Contrato {
     }
 
     public abstract void executarAcao(Acao acao);
- }
+}

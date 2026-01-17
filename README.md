@@ -18,10 +18,12 @@ Este é um projeto de estudo que mostra como aplicar os **princípios SOLID** em
 ✅ **Processamento de Pagamentos** - Pagamentos via boleto e cartão com parcelamento  
 ✅ **Persistência de Dados** - Padrão Repository com implementações para arquivo e banco de dados  
 ✅ **Injeção de Dependência** - `ContratoService` recebe o repositório por construtor  
+✅ **Tratamento de Exceções** - Validação de contratos com `ContratoInvalidoException` customizada  
 ✅ **Gestão de Pessoas** - Cadastro e gerenciamento de pessoas  
 ✅ **Sistema de Pedidos** - Pedidos comuns e especiais com descontos  
 ✅ **Enums** - Ações de contratos tipadas e seguras  
-✅ **Interfaces Segregadas** - `Pagamento` e `Parcelavel` separadas (Interface Segregation na prática!)
+✅ **Interfaces Segregadas** - `Pagamento` e `Parcelavel` separadas (Interface Segregation na prática!)  
+✅ **Classe Abstrata** - `Contrato` define o contrato base com método abstrato `executarAcao()`
 
 ---
 
@@ -34,13 +36,19 @@ Usa `enum Acao` para definir ações como **Aceitar**, **Recusar** e **Cancelar*
 Interfaces separadas: `Pagamento` (todos implementam) e `Parcelavel` (só quem precisa). Cartão de crédito implementa ambas, boleto só `Pagamento`.
 
 ### 🔄 Polimorfismo e Abstração
-Classe abstrata `Contrato` com método `executarAcao(Acao)` que cada tipo de contrato implementa do seu jeito. `ContratoTrabalho` ainda tem seu método específico `rescindirPorJustaCausa()`.
+Classe abstrata `Contrato` define o método abstrato `executarAcao(Acao)` que cada tipo de contrato implementa de forma única. `ContratoSeguro` aceita/recusa com uma lógica, `ContratoTrabalho` com outra. `ContratoTrabalho` ainda tem seu método específico `rescindirPorJustaCausa()`. Polimorfismo na veia!
 
 ### 📦 Lombok
 Usa Lombok para reduzir boilerplate com `@Getter`, `@Setter`, `@AllArgsConstructor`.
 
 ### 💾 Padrão Repository + Dependency Inversion
 **Interface** `ContratoRepository` define o contrato. **Implementações** `ContratoRepositoryArquivo` e `ContratoRepositoryBD` salvam em arquivo ou banco de dados. `ContratoService` não sabe qual implementação está usando - ele só depende da abstração! Troca de arquivo pra BD? Só muda a injeção no construtor. SOLID no seu melhor! 🚀
+
+### ⚠️ Tratamento de Exceções Customizadas
+`ContratoInvalidoException` valida contratos antes de salvar. O `ContratoService` usa try-catch para capturar e tratar erros de forma elegante, impedindo que contratos nulos sejam salvos. Validação robusta e mensagens de erro claras!
+
+### 🎨 Classes Abstratas em Ação
+`Contrato` é uma classe abstrata que define a estrutura base para todos os tipos de contratos. Cada contrato (Aluguel, Seguro, Trabalho, Fornecedor) implementa o método abstrato `executarAcao(Acao)` do seu jeito. Reutilização de código + flexibilidade!
 
 ---
 
